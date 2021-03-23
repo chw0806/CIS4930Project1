@@ -5,7 +5,6 @@
 #outputs = avg rtt
 
 import sys
-import numpy
 #contains event information
 class Event:
     def __init__(self, arrival_time, size, id,):
@@ -14,31 +13,21 @@ class Event:
         self.id = id
 
 #input validation
-def check_inputs(args):
-    if len(sys.argv) != 7:
-        print("Program requires 6 command line arguments")
-        exit()
-    for i in range(1,7):
-        try:
-            float(sys.argv[i])
-            print(float(sys.argv[i]))
-        except ValueError:
-            print("All arguments must be convertable to type float.")
-            exit()
+def check_inputs():
+    arg_list=[]
+    arg_remind=["Number of files", "Poisson process with rate lambda","Cache storage","Ra","Rc","D","Pareto distribution k", "Pareto distribution alpha"]
+    for i in range(0, 8):
+        print("please input"+" "+arg_remind[i]+":")
+        arg = float(input())
+        arg_list.append(arg)
 
-    lamb = float(sys.argv[1])
-    num_files = int(sys.argv[2])
-    mu_s = float(sys.argv[3])
-    if not (mu_s > 1):
-        print("mu_s must be greater than 1.")
-        exit()
-    k_s = float(sys.argv[4])
-    mu_p = float(sys.argv[5])
-    if not (mu_p > 1):
+    alpha_p = float(arg_list[7])
+    if not (alpha_p > 1):
         print("mu_p must be greater than 1.")
         exit()
-    k_p = float(sys.argv[6])
-    return [lamb,num_files, mu_s, k_s, mu_p, k_p]
+    return arg_list
+    exit()
 
 
-exit()
+
+
